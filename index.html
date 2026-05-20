@@ -617,18 +617,17 @@
   z-index: 1;
   margin-top: clamp(24px, 6vw, 40px);
   width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .deity-frame {
-  width: min(100%, 372px);
-  max-width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
   position: relative;
+  width: 100%;
+  max-width: 372px;
+  box-sizing: border-box;
   padding: clamp(8px, 2.5vw, 16px);
   background: linear-gradient(145deg, #FAF3E2 0%, #FEF9EF 50%, #FAF3E2 100%);
   border: 2px solid rgba(201, 152, 10, 0.6);
@@ -638,17 +637,35 @@
     0 6px 32px rgba(90, 20, 5, 0.18),
     inset 0 1px 0 rgba(255, 215, 0, 0.15),
     0 0 40px rgba(255, 180, 0, 0.08);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .deity-frame img {
   display: block;
-  width: 100%;
+  width: 100% !important;
   max-width: 340px;
   height: auto;
-  margin: 0 auto;
   border-radius: 8px;
-  object-fit: cover;
+  object-fit: contain;
+  box-sizing: border-box;
 }
+
+/* Extra safety for very small mobile screens */
+@media (max-width: 420px) {
+  .deity-frame {
+    max-width: 100%;
+    padding: 8px;
+  }
+
+  .deity-frame img {
+    max-width: 100%;
+  }
+}
+
   </style>
 </head>
 
